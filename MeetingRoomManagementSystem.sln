@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingRoomManagementSystemWeb", "MeetingRoomManagementSystem\MeetingRoomManagementSystemWeb.csproj", "{5C50002C-A0B9-483E-B13B-FCAD46227CDD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingRoomSys.Models", "MeetingRoomSys.Models\MeetingRoomSys.Models.csproj", "{DEF73B93-DD15-4C25-9286-E19BAF5807A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingRoomSys.DataAccess", "MeetingRoomSys.DataAccess\MeetingRoomSys.DataAccess.csproj", "{AC7EFE89-38F1-4209-B3A3-8A56F63BBCB3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C50002C-A0B9-483E-B13B-FCAD46227CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C50002C-A0B9-483E-B13B-FCAD46227CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C50002C-A0B9-483E-B13B-FCAD46227CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C50002C-A0B9-483E-B13B-FCAD46227CDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEF73B93-DD15-4C25-9286-E19BAF5807A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEF73B93-DD15-4C25-9286-E19BAF5807A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEF73B93-DD15-4C25-9286-E19BAF5807A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEF73B93-DD15-4C25-9286-E19BAF5807A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC7EFE89-38F1-4209-B3A3-8A56F63BBCB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7EFE89-38F1-4209-B3A3-8A56F63BBCB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7EFE89-38F1-4209-B3A3-8A56F63BBCB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7EFE89-38F1-4209-B3A3-8A56F63BBCB3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C79907C4-2B18-4163-9080-9F31C8882099}
+	EndGlobalSection
+EndGlobal

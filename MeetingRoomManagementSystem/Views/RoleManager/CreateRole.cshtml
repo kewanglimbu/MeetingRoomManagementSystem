@@ -1,0 +1,28 @@
+﻿@model CreateRoleViewModel
+
+
+@{
+    ViewData["Title"] = "Roles";
+}
+
+
+
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoleName"></label>
+                <input asp-for="RoleName" class="form-control" />
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+
+        <div class="form-group mt-3">
+            <!-- Add margin-top for spacing -->
+            <button type="submit" class="btn btn-success">Add  Role</button>
+        </div>
+        </form>
+    </div>
+
+
+
+

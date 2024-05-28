@@ -1,0 +1,9 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+
+
+<form asp-action="DeleteRole" asp-controller="RoleManager" asp-route-Id="@Model.Id" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="@Model.Id" class="btn btn-danger" />
+    <a asp-action="Index" class="alert">Back to List</a>
+</form>

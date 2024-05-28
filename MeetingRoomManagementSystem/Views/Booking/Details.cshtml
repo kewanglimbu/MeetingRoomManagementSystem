@@ -1,0 +1,51 @@
+﻿@model MeetingRoomSys.Models.Booking
+@{
+    ViewData["Title"] = "Booking Details";
+}
+
+<h4>Participants</h4>
+<hr />
+@if (Model.Participants != null && Model.Participants.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var participant in Model.Participants)
+            {
+                <tr>
+                    <td>
+                        @if (participant.User != null)
+                        {
+                            @participant.User.FirstName @(" ")  @participant.User.LastName
+                        }
+                        else
+                        {
+                            
+                            <p>No User Assigned</p>
+                        }
+                    </td>
+                    <td>
+                        @if (participant.User != null)
+                        {
+                            @participant.User.Email
+                        }
+                        else
+                        {
+                            
+                            <p>N/A</p>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No participants for this booking.</p>
+}

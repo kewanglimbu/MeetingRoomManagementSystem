@@ -1,0 +1,39 @@
+﻿@model List<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Role Manager</h1>
+<p>
+    <a asp-action="CreateRole" class="btn btn-success">Add New Role</a>
+</p>
+
+<p>
+    <a asp-action="UserWithRole" class="btn btn-success" style="width:fit-content">User Roles</a>
+</p>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.Id</td>
+                <td>@role.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@role.Id" class="btn btn-outline-secondary">Edit</a> 
+                    <a asp-action="Details" asp-route-id="@role.Id" class="btn btn-outline-info">Details</a> 
+                    <a asp-action="DeleteRole" asp-route-id="@role.Id" class="btn btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

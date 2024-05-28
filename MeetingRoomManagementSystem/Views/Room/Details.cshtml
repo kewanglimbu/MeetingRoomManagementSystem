@@ -1,0 +1,76 @@
+﻿@model MeetingRoomSys.Models.Room
+
+<h2>Room Details</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Name
+        </dd>
+        <dt class="col-sm-2">
+            Capacity
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Capacity
+        </dd>
+        <dt class="col-sm-2">
+            Is Available
+        </dt>
+        <dd class="col-sm-10">
+            @if (@Model.IsAvailable)
+            {
+                <div class="d-inline-flex align-items-center Available">
+                    <div class="circle"></div>
+                    <div class="ps-2">Available</div>
+                </div>
+            }
+            else
+            {
+                <div class="d-inline-flex align-items-center notAvailable">
+                    <div class="circle"></div>
+                    <div class="ps-2">Not Available</div>
+                </div>
+            }
+        </dd>
+    </dl>
+</div>
+<hr />
+<h3>Participants</h3>
+
+@if (Model.Bookings == null || !Model.Bookings.Any() || !Model.Bookings.SelectMany(b => b.Participants).Any())
+{
+    <p>No participants have been added to this room.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Participant Name</th>
+                <th>Booking Start Time</th>
+                <th>Booking End Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Model.Bookings)
+            {
+                foreach (var participant in booking.Participants)
+                {
+                    <tr>
+                        <td>@participant.User?.UserName</td>
+                        <td>@booking.StartTime</td>
+                        <td>@booking.EndTime</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+<hr />
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

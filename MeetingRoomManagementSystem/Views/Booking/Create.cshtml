@@ -1,0 +1,161 @@
+﻿@model MeetingRoomManagementSystem.ViewModels.BookingViewModel 
+
+<h4>Add Booking</h4>
+
+<form asp-action="Create" method="post">
+
+    <div class="form-group">
+        <label asp-for="Title">Meeting Title</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <textarea  asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartTime"></label>
+        <input type="datetime-local" id="StartTime" name="StartTime" asp-for="StartTime" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+        <span asp-validation-for="StartTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndTime"></label>
+        <input type="datetime-local" id="EndTime" name="EndTime" asp-for="EndTime" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+        <span asp-validation-for="EndTime" class="text-danger"></span>
+    </div>
+
+    <div  class="form-group">
+        <label>Meeting Room</label>
+        <label id="roomCapacityDisplay"  ></label>
+
+        <select asp-for="RoomId" asp-items="Model.RoomList" class="form-control roomSelect">
+            <option value="" >--Select a Room--</option>
+        </select>
+        <span asp-validation-for="RoomId" class="text-danger"></span>
+    </div>
+    
+
+
+   @* <div class="form-group">
+        <label for="ParticipantIds">Participants</label>
+        <select id="ParticipantIds" name="ParticipantIds" multiple asp-items="Model.ParticipantList" class="form-control">
+        </select>
+    </div>*@
+    
+    <div class="form-group">
+        <label asp-for="ParticipantIds">Add Participant</label>
+
+        <select class="form-control"  asp-for="ParticipantIds" multiple >
+            @foreach (var participant in Model.ParticipantList)
+            {
+                <option value="@participant.Value"  >@participant.Text</option>
+            }
+        </select>
+        <span asp-validation-for="ParticipantIds" class="text-danger"></span>
+    </div>
+
+    <div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/js/standalone/selectize.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('select[multiple]').selectize({
+                plugins: ['remove_button'],
+                delimiter: ',',
+                persist: false,
+                create: false,
+                placeholder: 'Select Participants',
+            });
+           
+        });
+        
+
+
+
+        //Code : to automatically adjust to be 1 hour ahead of the selected StartTime when the user selects a StartTime
+
+        
+        document.getElementById("StartTime").addEventListener("change", function () {
+            var startTimeInput = document.getElementById("StartTime").value;
+            var endTimeInput = document.getElementById("EndTime");
+
+            if (startTimeInput) {
+                // Parse the selected start time as a JavaScript Date object
+                var startTime = new Date(startTimeInput);
+
+                // Adjust the end time by adding one hour
+                startTime.setHours(startTime.getHours() + 1);
+
+                // Adjust for time zone offset
+                var offsetMinutes = startTime.getTimezoneOffset();
+                startTime.setMinutes(startTime.getMinutes() - offsetMinutes);
+
+                // Format the adjusted end time for input
+                var adjustedEndTime = startTime.toISOString().slice(0, 16);
+
+                // Update the end time input field
+                endTimeInput.value = adjustedEndTime;
+            } else {
+                endTimeInput.value = ""; // Clear end time if start time is not selected
+            }
+        });
+
+
+
+        //function onSubmitButtonClick() {
+        //    alert("submit button clicked");
+        //}
+
+
+        $(document).ready(function () {
+            $("#RoomId").change(function () {
+                var selectedRoomId = $(this).val();
+
+                if (selectedRoomId) {
+                    $.ajax({
+                        url: '/Booking/GetRoomCapacity', 
+                        type: 'GET',
+                        data: { roomId: selectedRoomId },
+                        success: function (data) {
+                            // Update the room capacity display and show it
+                            $("#roomCapacityDisplay").text("Capacity: " + data);
+                            $("#roomCapacityDisplay").show();
+                        },
+                        error: function () {
+                            console.error("Error fetching room capacity.");
+                        }
+                    });
+                } else {
+                    // If no room is selected, hide the room capacity display
+                    $("#roomCapacityDisplay").hide();
+                }
+            });
+        });
+       
+           
+    
+
+
+
+    </script>
+    
+ 
+ }
+
+        

@@ -1,0 +1,52 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+td .Available .circle{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #388E3C;
+}
+
+
+.Available {
+    background-color: #B9F6CA;
+    color: #388E3C;
+}
+
+
+.notAvailable {
+    background-color: #FFECB3;
+    color: #FFA000;
+}
+
+.accessdenied h2 {
+  color:red;
+}
+
+
+/*for showing room capacity: Booking/create*/
+
+div #roomCapacityDisplay {
+    text-align: right;
+    color: red;
+    font-size: 12px;
+    font-family: monospace;
+}

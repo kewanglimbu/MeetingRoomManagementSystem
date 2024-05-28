@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MeetingRoomSys.Models.Room>
+
+<h3>Meeting Rooms List</h3>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Room</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAvailable)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacity)
+                </td>
+                <td>
+                    @if (item.IsAvailable)
+                    {
+                        <div class="d-inline-flex align-items-center Available">
+                            <div class="circle"></div>
+                            <div class="ps-2">Available</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-inline-flex align-items-center notAvailable">
+                            <div class="circle"></div>
+                            <div class="ps-2">Not Available</div>
+                        </div>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

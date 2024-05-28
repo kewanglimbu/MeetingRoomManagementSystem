@@ -1,0 +1,78 @@
+﻿@model List<MeetingRoomSys.Models.Booking>
+
+<h3>Bookings</h3>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Book Room</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Meeting Title</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Room</th>
+            <th>Organizer</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                <td>@booking.Title</td>
+                <td>@booking.StartTime</td>
+                <td>@booking.EndTime</td>
+                <td>
+                    @if (booking.Room != null)
+                    {
+                        @booking.Room.Name
+                    }
+                    else
+                    {
+                        <td>N / A</td>
+                    }
+                </td>
+                <td>
+                    @if (booking.Organizer != null)
+                    {
+                        @booking.Organizer.Email
+                    }
+                    else
+                    {
+                    <td>N / A</td>
+                    }
+                </td>
+
+                <td>
+                    <a asp-controller ="Booking" asp-action="AddParticipant" asp-route-Id="@booking.Id">Add Participant</a> |
+
+                    <a asp-action="Details" asp-route-id="@booking.Id">Details</a> |
+                </td>
+
+                <td>
+                  @*  @foreach (var item in booking.Participants)
+                    {
+                        @if (item != null && item.User != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.User.FirstName) <br />
+                        }
+                        else
+                        {
+                            <span>N / A</span> <br />
+                        }
+                    }*@
+                </td>
+               
+
+           
+              @* <td>
+                    <a asp-action="Edit" asp-route-id="@booking.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@booking.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@booking.Id">Delete</a>
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
